@@ -1,0 +1,20 @@
+.Ads {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ebeff1;
+  border-radius: 10px;
+  margin: 32px 16px 84px 16px;
+}
+
+.Ads > span {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 1200px) {
+  .Ads > span {
+    font-size: 33px;
+  }
+}
