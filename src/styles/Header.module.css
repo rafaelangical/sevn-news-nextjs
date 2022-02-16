@@ -1,0 +1,43 @@
+.header > nav > ul {
+  width: 100%;
+  height: 54px;
+  background-color: #ffbd14;
+}
+
+.header > nav > ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  list-style: none;
+}
+
+.header > nav > ul > button {
+  width: 54px;
+  height: 54px;
+  border: none;
+  background: #000000;
+  color: #fff;
+}
+
+.arrowLeft {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrowLeft {
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.header > nav > ul > li {
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: 23px;
+}
