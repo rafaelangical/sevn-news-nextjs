@@ -1,0 +1,44 @@
+.rowFistNew > p {
+  font-size: 48px;
+}
+
+.principalNew > h2 {
+  color: #ff2d2d;
+  font-size: 12px;
+}
+
+.principalNew > p {
+  font-size: 48px;
+}
+
+.principalNew {
+  width: 100%;
+  padding: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.principalNew {
+  min-height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.principalNew {
+  flex-direction: column;
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  .principalNew > p {
+    font-size: 58px;
+  }
+}
+
+@media (max-width: 728px) {
+  .principalNew > p {
+    font-size: 36px;
+  }
+}
