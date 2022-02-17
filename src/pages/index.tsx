@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import api from "@api";
+import { AxiosResponse } from "axios";
 
 type RespOtherNews = {
   author: string;
@@ -32,12 +33,11 @@ const Home: NextPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const respLastPosts = await api.get("/news/headlines");
-        const { data: dataLastNews } = respLastPosts;
+        const { data: dataLastNews }: AxiosResponse<RespLastNews[]> =
+          await api.get("/news/headlines");
 
-        const respOtherNews = await api.get("/news/others");
-
-        const { data: dataOtherNews } = respOtherNews;
+        const { data: dataOtherNews }: AxiosResponse<RespOtherNews[]> =
+          await api.get("/news/others");
 
         if (dataLastNews && dataOtherNews) {
           setLastNews(dataLastNews);
