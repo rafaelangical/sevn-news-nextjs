@@ -3,7 +3,7 @@ import styles from "@styles/Ads.module.css";
 
 export const Ads = ({ style = {} }: { style?: React.CSSProperties }) => (
   <div className={styles.Ads} style={style}>
-    <span>Publicicade</span>
+    <span>Publicidade</span>
   </div>
 );
 
