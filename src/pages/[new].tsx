@@ -20,6 +20,7 @@ type ApiResponse = {
 
 export const New = () => {
   const [data, setData] = useState<ApiResponse | null>(null);
+  const [error, setError] = useState(false);
   const router = useRouter();
 
   const newsId = router?.query?.new;
@@ -35,6 +36,7 @@ export const New = () => {
           setData(data);
         }
       } catch (e) {
+        setError(true);
         console.error("error on fetch news data", e);
       }
     };
@@ -45,7 +47,7 @@ export const New = () => {
   return (
     <>
       <Header />
-      {data ? (
+      {data && (
         <div className={styles.container}>
           <h2>{data?.category}</h2>
           <h1>{data?.title}</h1>
@@ -61,7 +63,8 @@ export const New = () => {
           />
           <p>{data?.article}</p>
         </div>
-      ) : (
+      )}
+      {error && (
         <div className={styles.container}>
           <h1>Ocorreu um problema ao buscar os dados :/</h1>
         </div>
