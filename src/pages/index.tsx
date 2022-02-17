@@ -98,7 +98,11 @@ const Home: NextPage = () => {
           {otherNews &&
             otherNews.map((item) => {
               return (
-                <div key={item?.date} className={styles.otherNews}>
+                <div
+                  key={item?.date}
+                  className={styles.otherNews}
+                  onClick={() => router.push(`/${item.categoryId}`)}
+                >
                   <p>{item?.title}</p>
                 </div>
               );
