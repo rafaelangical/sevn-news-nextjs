@@ -1,0 +1,19 @@
+.otherNews {
+  flex: 1;
+  min-height: 60px;
+  min-width: 280px;
+  max-width: 280px;
+  padding: 10px 16px;
+  border-left: 5px solid blue;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 728px) {
+  .otherNews {
+    flex: 1;
+    min-height: 60px;
+    min-width: 280px;
+    max-width: 100%;
+  }
+}
