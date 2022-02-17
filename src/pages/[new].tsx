@@ -4,6 +4,7 @@ import styles from "@styles/New.module.css";
 import Ads from "@components/ads";
 import { useEffect, useState } from "react";
 import api from "@api";
+import { AxiosResponse } from "axios";
 
 type ApiResponse = {
   id: number;
@@ -28,9 +29,9 @@ export const New = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await api.get<ApiResponse>(`/news/articles/${newsId}`);
+        const resp: AxiosResponse = await api.get(`/news/articles/${newsId}`);
 
-        const { data } = resp;
+        const { data }: { data: ApiResponse } = resp;
 
         if (data) {
           setData(data);
