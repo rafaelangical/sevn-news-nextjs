@@ -34,6 +34,8 @@ export const New = () => {
 
         if (data) {
           setData(data);
+        } else {
+          setError(true);
         }
       } catch (e) {
         setError(true);
@@ -41,13 +43,13 @@ export const New = () => {
       }
     };
 
-    fetchData().catch((e) => console.error("error on fetch news data"));
+    fetchData();
   }, [router, newsId]);
 
   return (
     <>
       <Header />
-      {data && (
+      {data ? (
         <div className={styles.container}>
           <h2>{data?.category}</h2>
           <h1>{data?.title}</h1>
@@ -63,11 +65,12 @@ export const New = () => {
           />
           <p>{data?.article}</p>
         </div>
-      )}
-      {error && (
-        <div className={styles.container}>
-          <h1>Ocorreu um problema ao buscar os dados :/</h1>
-        </div>
+      ) : (
+        error && (
+          <div className={styles.container}>
+            <h1>Ocorreu um problema ao buscar os dados :/</h1>
+          </div>
+        )
       )}
     </>
   );
