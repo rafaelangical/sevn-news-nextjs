@@ -24,6 +24,8 @@ type RespLastNews = RespOtherNews & {
 const Home: NextPage = () => {
   const [lastNews, setLastNews] = useState<RespLastNews[] | null>(null);
   const [otherNews, setOtherNews] = useState<RespOtherNews[] | null>(null);
+  const [errorNews, setErrorNews] = useState(false);
+  const [errorLastNews, setErrorLastNews] = useState(false);
 
   const router = useRouter();
 
@@ -40,12 +42,12 @@ const Home: NextPage = () => {
         console.log("respLastPosts", respLastPosts);
         console.log("respOtherNews", respOtherNews);
 
-        if (dataLastNews) {
+        if (dataLastNews && dataOtherNews) {
           setLastNews(dataLastNews);
-        }
-
-        if (dataOtherNews) {
           setOtherNews(dataOtherNews);
+        } else {
+          setErrorNews(true);
+          setErrorLastNews(true);
         }
       } catch (e) {
         console.error("error on fetch news");
@@ -63,7 +65,7 @@ const Home: NextPage = () => {
       <div className={styles.container}>
         <Ads />
         <div className={styles.mainRow}>
-          {lastNews && lastNewsObj && (
+          {lastNews && lastNewsObj ? (
             <div
               key={lastNewsObj?.date}
               className={styles.rowFistNew}
@@ -72,6 +74,10 @@ const Home: NextPage = () => {
               <h2>{lastNewsObj?.category}</h2>
               <p>{lastNewsObj?.title}</p>
             </div>
+          ) : (
+            errorLastNews && (
+              <h3>Ocorreu um problema ao listar a ultima noticia.</h3>
+            )
           )}
           <div className={styles.rowSecondNew}>
             {lastNews &&
@@ -95,18 +101,21 @@ const Home: NextPage = () => {
           </div>
         </div>
         <div className={styles.listOtherNews}>
-          {otherNews &&
-            otherNews.map((item) => {
-              return (
-                <div
-                  key={item?.date}
-                  className={styles.otherNews}
-                  onClick={() => router.push(`/${item.categoryId}`)}
-                >
-                  <p>{item?.title}</p>
-                </div>
-              );
-            })}
+          {otherNews
+            ? otherNews.map((item) => {
+                return (
+                  <div
+                    key={item?.date}
+                    className={styles.otherNews}
+                    onClick={() => router.push(`/${item.categoryId}`)}
+                  >
+                    <p>{item?.title}</p>
+                  </div>
+                );
+              })
+            : errorNews && (
+                <h3>Ocorreu um problema ao listar a ultima noticia.</h3>
+              )}
         </div>
       </div>
     </>
