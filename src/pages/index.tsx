@@ -39,9 +39,6 @@ const Home: NextPage = () => {
 
         const { data: dataOtherNews } = respOtherNews;
 
-        console.log("respLastPosts", respLastPosts);
-        console.log("respOtherNews", respOtherNews);
-
         if (dataLastNews && dataOtherNews) {
           setLastNews(dataLastNews);
           setOtherNews(dataOtherNews);
@@ -50,11 +47,13 @@ const Home: NextPage = () => {
           setErrorLastNews(true);
         }
       } catch (e) {
-        console.error("error on fetch news");
+        setErrorNews(true);
+        setErrorLastNews(true);
+        console.error("error on fetch news", e);
       }
     };
 
-    fetchData().catch((e) => console.error("error on fetch news"));
+    fetchData();
   }, []);
 
   const lastNewsObj = lastNews && lastNews[0];
