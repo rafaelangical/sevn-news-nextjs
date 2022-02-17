@@ -20,7 +20,7 @@
 }
 
 .rowFistNew > p {
-  font-size: 36px;
+  font-size: 48px;
 }
 
 .rowSecondNew,
@@ -32,6 +32,13 @@
   margin: 0 auto;
 }
 
+.rowFistNew {
+  min-height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  border-radius: 10px;
+}
+
 .rowSecondNew {
   flex-direction: row;
   justify-content: space-around;
@@ -39,17 +46,22 @@
 
 .rowFistNew {
   flex-direction: column;
+  cursor: pointer;
 }
 
 .cardTwoLastNews {
-  min-width: 280px;
-  max-width: 280px;
+  min-width: 281px;
+  max-width: 281px;
   margin: 0 auto;
   margin-bottom: 16px;
   cursor: pointer;
 }
 
-.cardTwoLastNews > img {
+.cardTwoLastNews:hover {
+  zoom: 1.5;
+}
+
+.cardTwoLastNews > span {
   width: 40%;
   height: 40%;
   border-radius: 10px;
@@ -105,5 +117,27 @@
     min-height: 60px;
     min-width: 280px;
     max-width: 100%;
+  }
+
+  .rowFistNew > p {
+    font-size: 36px;
+  }
+
+  .rowSecondNew {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cardTwoLastNews {
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cardTwoLastNews > p {
+    max-width: 90%;
   }
 }
