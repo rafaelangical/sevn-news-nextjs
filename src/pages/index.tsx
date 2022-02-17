@@ -2,11 +2,13 @@ import type { NextPage } from "next";
 import styles from "@styles/Home.module.css";
 import Header from "@components/header";
 import Ads from "@components/ads";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import api from "@api";
 import { AxiosResponse } from "axios";
+import OtherNews from "@components/otherNews";
+import PrincipalNew from "@components/principalNew";
+import CardNews from "@components/cardNews";
 
 type RespOtherNews = {
   author: string;
@@ -65,14 +67,12 @@ const Home: NextPage = () => {
         <Ads />
         <div className={styles.mainRow}>
           {lastNews && lastNewsObj ? (
-            <div
+            <PrincipalNew
               key={lastNewsObj?.date}
-              className={styles.rowFistNew}
               onClick={() => router.push(`/${lastNewsObj?.categoryId}`)}
-            >
-              <h2>{lastNewsObj?.category}</h2>
-              <p>{lastNewsObj?.title}</p>
-            </div>
+              category={lastNewsObj?.category}
+              title={lastNewsObj?.title}
+            />
           ) : (
             errorLastNews && (
               <h3>Ocorreu um problema ao listar a ultima noticia.</h3>
@@ -80,36 +80,28 @@ const Home: NextPage = () => {
           )}
           <div className={styles.rowSecondNew}>
             {lastNews &&
-              lastNews.slice(1).map((item) => (
-                <div
-                  key={item.date}
-                  className={styles.cardTwoLastNews}
-                  onClick={() => router.push(`/${item.categoryId}`)}
-                >
-                  <Image
-                    src={item?.poster}
-                    width={500}
-                    height={400}
-                    unoptimized
-                    alt="image-poster"
+              lastNews
+                .slice(1)
+                .map((item) => (
+                  <CardNews
+                    onClick={() => router.push(`/${item.categoryId}`)}
+                    key={item.date}
+                    poster={item?.poster}
+                    category={item?.category}
+                    title={item?.title}
                   />
-                  <h2>{item?.category}</h2>
-                  <p>{item?.title}</p>
-                </div>
-              ))}
+                ))}
           </div>
         </div>
         <div className={styles.listOtherNews}>
           {otherNews
             ? otherNews.map((item) => {
                 return (
-                  <div
-                    key={item?.date}
-                    className={styles.otherNews}
+                  <OtherNews
                     onClick={() => router.push(`/${item.categoryId}`)}
-                  >
-                    <p>{item?.title}</p>
-                  </div>
+                    title={item?.title}
+                    key={item?.date}
+                  />
                 );
               })
             : errorNews && (
